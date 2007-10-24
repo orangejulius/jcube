@@ -1,0 +1,20 @@
+#a state that is very nearly finished
+#all cubies are in place, but 4 are rotated improperly
+w W W
+W W W
+W W Y
+R B B
+B B B
+O B O
+G G G
+G G G
+B G B
+R R W
+R R R
+G R R
+R Y Y
+Y Y Y
+Y Y B
+O O O
+O O O
+Y O G

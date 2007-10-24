@@ -3,16 +3,15 @@ c=Cube()
 print "1: default cube"
 c.display()
 
-
 print "2: loaded corners.cube file"
 c.load("corners.cube");
 c.display()
 
-print "3: D rotation"
-c.D().display()
+print "3: L rotation"
+c.L().display()
 
-print "4: D' rotation"
-c.Dprime().display()
+print "4: L' rotation"
+c.Lprime().display()
 
 print "5: should be the same as 2"
 c.display()

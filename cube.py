@@ -46,10 +46,30 @@ class Cube:
 
 	def L(self):
 		newcube=copy.deepcopy(self)
+		newcube.left=rotateFace(newcube.left)
+		slice=[[newcube.up[0][0],newcube.up[1][0],newcube.up[2][0]]]
+		slice.append([newcube.front[0][0],newcube.front[1][0],newcube.front[2][0]])
+		slice.append([newcube.down[0][0],newcube.down[1][0],newcube.down[2][0]])
+		slice.append([newcube.back[2][2],newcube.back[1][2],newcube.back[0][2]])
+		slice=rotateSlice(slice)
+		newcube.up[0][0],newcube.up[1][0],newcube.up[2][0]=slice[0]
+		newcube.front[0][0],newcube.front[1][0],newcube.front[2][0]=slice[1]
+		newcube.down[0][0],newcube.down[1][0],newcube.down[2][0]=slice[2]
+		newcube.back[2][2],newcube.back[1][2],newcube.back[0][2]=slice[3]
 		return newcube
 
 	def Lprime(self):
 		newcube=copy.deepcopy(self)
+		newcube.left=rotateFacePrime(newcube.left)
+		slice=[[newcube.up[0][0],newcube.up[1][0],newcube.up[2][0]]]
+		slice.append([newcube.front[0][0],newcube.front[1][0],newcube.front[2][0]])
+		slice.append([newcube.down[0][0],newcube.down[1][0],newcube.down[2][0]])
+		slice.append([newcube.back[2][2],newcube.back[1][2],newcube.back[0][2]])
+		slice=rotateSlicePrime(slice)
+		newcube.up[0][0],newcube.up[1][0],newcube.up[2][0]=slice[0]
+		newcube.front[0][0],newcube.front[1][0],newcube.front[2][0]=slice[1]
+		newcube.down[0][0],newcube.down[1][0],newcube.down[2][0]=slice[2]
+		newcube.back[2][2],newcube.back[1][2],newcube.back[0][2]=slice[3]
 		return newcube
 
 	def F(self):

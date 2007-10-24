@@ -33,15 +33,15 @@ class Cube:
 	def D(self):
 		newcube=copy.deepcopy(self)
 		newcube.down=rotateFace(newcube.down)
-		newslice=rotateSlice([self.left[2],self.front[2],self.right[2],self.back[2]])
-		newcube.front[2],newcube.left[2],newcube.back[2],newcube.right[2]=newslice[0],newslice[1],newslice[2],newslice[3]
+		newslice=rotateSlice([newcube.left[2],newcube.front[2],newcube.right[2],newcube.back[2]])
+		newcube.left[2],newcube.front[2],newcube.right[2],newcube.back[2]=newslice[0],newslice[1],newslice[2],newslice[3]
 		return newcube
 
 	def Dprime(self):
 		newcube=copy.deepcopy(self)
-		newcube.down=rotateFacePrime(self.down)
-		newslice=rotateSlicePrime([self.left[2],self.front[2],self.right[2],self.back[2]])
-		newcube.front[2],newcube.left[2],newcube.back[2],newcube.right[2]=newslice[0],newslice[1],newslice[2],newslice[3]
+		newcube.down=rotateFacePrime(newcube.down)
+		newslice=rotateSlicePrime([newcube.left[2],newcube.front[2],newcube.right[2],newcube.back[2]])
+		newcube.left[2],newcube.front[2],newcube.right[2],newcube.back[2]=newslice[0],newslice[1],newslice[2],newslice[3]
 		return newcube
 
 	def L(self):

@@ -10,12 +10,11 @@ class Cube:
 		self.front=[['R' for col in range(self.size)] for row in range(self.size)]
 		self.right=[['Y' for col in range(self.size)] for row in range(self.size)]
 		self.back=[['O' for col in range(self.size)] for row in range(self.size)]
-			
-	def isValid(self):
-		return True;
-	
+
+
 	#moves
 	def U(self):
+		rotateFace(self.up)
 		return self
 	def Uprime(self):
 		return self
@@ -48,10 +47,7 @@ class Cube:
 	def z(self):
 		return self
 	
-	#convenience methods that take a 3x3 matrix and rotate it
-	def rotateFace(self,face):
-		
-	def rotateFacePrime(self,face):
+	
 	
 	#load state from file
 	#one line per row with
@@ -115,3 +111,23 @@ class Cube:
 			for j in range(self.size):
 				print self.down[i][j],
 			print
+			
+#convenience methods that take a 3x3 matrix and rotate it
+
+#clockwise
+def rotateFace(face):
+	#corners
+	face[0][0],face[0][2],face[2][0], face[2][2]=face[2][0],face[0][0],face[2][2],face[0][2]
+	
+	#middle edges
+	face[0][1],face[1][2],face[2][1],face[1][0]=face[1][0],face[0][1],face[1][2],face[2][1]
+
+	
+#counterclockwise
+def rotateFacePrime(face):
+	#corners
+	face[0][0],face[0][2],face[2][0], face[2][2]=face[0][2],face[2][2], face[0][0],face[2][0]
+	
+	#middle edges
+	face[0][1],face[1][2],face[2][1],face[1][0]=face[1][2],face[2][1],face[1][0],face[0][1]
+		

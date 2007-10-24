@@ -11,33 +11,64 @@ class Cube:
 		self.right=[['Y' for col in range(self.size)] for row in range(self.size)]
 		self.back=[['O' for col in range(self.size)] for row in range(self.size)]
 
-
 	#moves
+	#these all return a new cube object with the requested move executed
 	def U(self):
-		rotateFace(self.up)
-		return self
+		newcube=Cube()
+		newcube.up=rotateFace(self.up)
+		newslice=rotateSlice([self.front[0],self.left[0],self.back[0],self.right[0]])
+		newcube.front[0],newcube.left[0],newcube.back[0],newcube.right[0]=newslice[0],newslice[1],newslice[2],newslice[3]
+		return newcube
+	
 	def Uprime(self):
-		return self
+		newcube=Cube()
+		newcube.up=rotateFacePrime(self.up)
+		newslice=rotateSlicePrime([self.front[0],self.left[0],self.back[0],self.right[0]])
+		newcube.front[0],newcube.left[0],newcube.back[0],newcube.right[0]=newslice[0],newslice[1],newslice[2],newslice[3]
+		return newcube
+
 	def D(self):
-		return self
+		newcube=Cube()
+		newcube.up=rotateFace(self.up)
+		return newcube
+
 	def Dprime(self):
-		return self
+		newcube=Cube()
+		newcube.up=rotateFacePrime(self.up)
+		return newcube
+
 	def L(self):
-		return self
+		newcube=Cube()
+		return newcube
+
 	def Lprime(self):
-		return self
+		newcube=Cube()
+		return newcube
+
 	def F(self):
-		return self
+		newcube=Cube()
+		return newcube
+
 	def Fprime(self):
-		return self
+		newcube=Cube()
+		return newcube
+
 	def R(self):
-		return self
+		newcube=Cube()
+		return newcube
+
 	def Rprime(self):
-		return self
+		newcube=Cube()
+		return newcube
+
 	def B(self):
-		return self
+		newcube=Cube()
+		return newcube
+
 	def Bprime(self):
-		return self
+		newcube=Cube()
+		return newcube
+
 	
 	#cube rotations
 	def x(self):
@@ -46,8 +77,6 @@ class Cube:
 		return self
 	def z(self):
 		return self
-	
-	
 	
 	#load state from file
 	#one line per row with
@@ -111,23 +140,40 @@ class Cube:
 			for j in range(self.size):
 				print self.down[i][j],
 			print
-			
+
 #convenience methods that take a 3x3 matrix and rotate it
 
 #clockwise
 def rotateFace(face):
+	newface=face
 	#corners
-	face[0][0],face[0][2],face[2][0], face[2][2]=face[2][0],face[0][0],face[2][2],face[0][2]
+	newface[0][0],newface[0][2],newface[2][0],newface[2][2]=face[2][0],face[0][0],face[2][2],face[0][2]
 	
 	#middle edges
-	face[0][1],face[1][2],face[2][1],face[1][0]=face[1][0],face[0][1],face[1][2],face[2][1]
+	newface[0][1],newface[1][2],newface[2][1],newface[1][0]=face[1][0],face[0][1],face[1][2],face[2][1]
+	
+	return newface
 
 	
 #counterclockwise
 def rotateFacePrime(face):
+	newface=face
 	#corners
-	face[0][0],face[0][2],face[2][0], face[2][2]=face[0][2],face[2][2], face[0][0],face[2][0]
+	face[0][0],face[0][2],face[2][0], face[2][2]=face[0][2],face[2][2],face[0][0],face[2][0]
 	
 	#middle edges
-	face[0][1],face[1][2],face[2][1],face[1][0]=face[1][2],face[2][1],face[1][0],face[0][1]
+	newface[0][1],newface[1][2],newface[2][1],newface[1][0]=face[1][2],face[2][1],face[1][0],face[0][1]
+	
+	return newface
+
+#convenience methods that take a list of 4 sides of a slice and rotate them
+#be sure to pass in the slices in clockwise order around the face being rotated
+
+#clockwise
+def rotateSlice(slice):
+	return [slice[3],slice[0],slice[1],slice[2]]
+
+#counterclockwise
+def rotateSlicePrime(slice):
+	return [slice[1],slice[2],slice[3],slice[0]]
 		

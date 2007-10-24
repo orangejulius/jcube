@@ -3,9 +3,9 @@ c=Cube()
 c.display()
 c.load("corners.cube");
 c.display()
-c.U()
-c.display()
-
+#cn=c.U()
+c.Uprime().display()
+c.U().display()
 
 ##test rotations
 #test=[['a','b','c'],['d','e','f'],['g','h','i']]

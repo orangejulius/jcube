@@ -1,4 +1,7 @@
 #represents a cube state
+
+import copy
+
 class Cube:
 	def __init__(self):
 		self.size=3
@@ -14,59 +17,63 @@ class Cube:
 	#moves
 	#these all return a new cube object with the requested move executed
 	def U(self):
-		newcube=Cube()
-		newcube.up=rotateFace(self.up)
-		newslice=rotateSlice([self.front[0],self.left[0],self.back[0],self.right[0]])
+		newcube=copy.deepcopy(self)
+		newcube.up=rotateFace(newcube.up)
+		newslice=rotateSlice([newcube.front[0],newcube.left[0],newcube.back[0],newcube.right[0]])
 		newcube.front[0],newcube.left[0],newcube.back[0],newcube.right[0]=newslice[0],newslice[1],newslice[2],newslice[3]
 		return newcube
 	
 	def Uprime(self):
-		newcube=Cube()
-		newcube.up=rotateFacePrime(self.up)
-		newslice=rotateSlicePrime([self.front[0],self.left[0],self.back[0],self.right[0]])
+		newcube=copy.deepcopy(self)
+		newcube.up=rotateFacePrime(newcube.up)
+		newslice=rotateSlicePrime([newcube.front[0],newcube.left[0],newcube.back[0],newcube.right[0]])
 		newcube.front[0],newcube.left[0],newcube.back[0],newcube.right[0]=newslice[0],newslice[1],newslice[2],newslice[3]
 		return newcube
 
 	def D(self):
-		newcube=Cube()
-		newcube.up=rotateFace(self.up)
+		newcube=copy.deepcopy(self)
+		newcube.down=rotateFace(newcube.down)
+		newslice=rotateSlice([self.left[2],self.front[2],self.right[2],self.back[2]])
+		newcube.front[2],newcube.left[2],newcube.back[2],newcube.right[2]=newslice[0],newslice[1],newslice[2],newslice[3]
 		return newcube
 
 	def Dprime(self):
-		newcube=Cube()
-		newcube.up=rotateFacePrime(self.up)
+		newcube=copy.deepcopy(self)
+		newcube.down=rotateFacePrime(self.down)
+		newslice=rotateSlicePrime([self.left[2],self.front[2],self.right[2],self.back[2]])
+		newcube.front[2],newcube.left[2],newcube.back[2],newcube.right[2]=newslice[0],newslice[1],newslice[2],newslice[3]
 		return newcube
 
 	def L(self):
-		newcube=Cube()
+		newcube=copy.deepcopy(self)
 		return newcube
 
 	def Lprime(self):
-		newcube=Cube()
+		newcube=copy.deepcopy(self)
 		return newcube
 
 	def F(self):
-		newcube=Cube()
+		newcube=copy.deepcopy(self)
 		return newcube
 
 	def Fprime(self):
-		newcube=Cube()
+		newcube=copy.deepcopy(self)
 		return newcube
 
 	def R(self):
-		newcube=Cube()
+		newcube=copy.deepcopy(self)
 		return newcube
 
 	def Rprime(self):
-		newcube=Cube()
+		newcube=copy.deepcopy(self)
 		return newcube
 
 	def B(self):
-		newcube=Cube()
+		newcube=copy.deepcopy(self)
 		return newcube
 
 	def Bprime(self):
-		newcube=Cube()
+		newcube=copy.deepcopy(self)
 		return newcube
 
 	
@@ -119,26 +126,26 @@ class Cube:
 		for i in range(self.size):
 			print "     ",
 			for j in range(self.size):
-				print self.up[i][j],
+				prettyprint(self.up[i][j])
 			print
 		for i in range(self.size):
 			for j in range(self.size):
-				print self.left[i][j],
+				prettyprint(self.left[i][j])
 
 			for j in range(self.size):
-				print self.front[i][j],
+				prettyprint(self.front[i][j])
 
 			for j in range(self.size):
-				print self.right[i][j],
+				prettyprint(self.right[i][j])
 
 			for j in range(self.size):
-				print self.back[i][j],
+				prettyprint(self.back[i][j])
 			print
 
 		for i in range(self.size):
 			print "     ",
 			for j in range(self.size):
-				print self.down[i][j],
+				prettyprint (self.down[i][j])
 			print
 
 #convenience methods that take a 3x3 matrix and rotate it
@@ -176,4 +183,20 @@ def rotateSlice(slice):
 #counterclockwise
 def rotateSlicePrime(slice):
 	return [slice[1],slice[2],slice[3],slice[0]]
-		
+
+#print using colors!
+def prettyprint(out):
+	if (out=='W'):
+		print 'W',
+	elif (out=='G'):
+		print '\033[0;32m'+'G'+'\033[0m',
+	elif (out=='B'):
+		print '\033[1;34m'+'B'+'\033[0m',
+	elif (out=='O'):
+		print '\033[1;31m'+'O'+'\033[0m',
+	elif (out=='Y'):
+		print '\033[33m'+'Y'+'\033[0m',
+	elif (out=='R'):
+		print '\033[1;38m'+'R'+'\033[0m',
+	else:
+		print "e",#rror

@@ -199,10 +199,16 @@ class Cube:
 	
 	def Y(self):
 		newcube=copy.deepcopy(self)
+		newcube.up=rotateFace(newcube.up)
+		newcube.down=rotateFacePrime(newcube.down)
+		newcube.front,newcube.right,newcube.back,newcube.left=newcube.right,newcube.back,newcube.left,newcube.front
 		return newcube
 	
 	def Yprime(self):
 		newcube=copy.deepcopy(self)
+		newcube.up=rotateFacePrime(newcube.up)
+		newcube.down=rotateFace(newcube.down)
+		newcube.front,newcube.right,newcube.back,newcube.left=newcube.left,newcube.front,newcube.right,newcube.back
 		return newcube
 	
 	def Z(self):

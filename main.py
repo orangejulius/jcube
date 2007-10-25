@@ -7,11 +7,11 @@ print "2: loaded corners.cube file"
 c.load("scrambled.cube");
 c.display()
 
-print "3: X rotation"
-c.X().display()
+print "3: Y rotation"
+c.Y().display()
 
-print "4: X' rotation"
-c.Xprime().display()
+print "4: Y' rotation"
+c.Yprime().display()
 
 print "5: should be the same as 2"
 c.display()

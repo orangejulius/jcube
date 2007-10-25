@@ -1,0 +1,48 @@
+Notations used and other comments:
+Colors: I use the standard Rubik's cube colors of white, blue, green, red, yellow, and orange.
+
+Each of the six sides of the cube are labeled with one of the following names: front, back, up, down, left, right.
+
+Face->color mappings
+front:red
+back: orange
+up: white
+down: blue
+left: green
+right: yellow
+
+Axes:
+My representation uses a right-handed coordinate system with the X axis in the direction of the right (yellow) face, the Y axis in the direction of the up (white) face, and the Z axis in the direction of the back (orange) face.
+
+Each face is stored as a 3x3 matrix of the first letter of each color on each square of that face.
+
+To find the orientation of a face used in my representation follow these steps:
+1.) Look directly at the front face (red), and position the up (white), face on top so that the Y axis is pointing up and the Z axis is pointing right. This is the orientation used for the front side.
+2.) To find the left, right, or back orientations, start at the correct orientation for the front face. Rotate the cube about the Y axis so that the desired face is in view. This is the orientation used for each of those sides.
+3.) To find the up face orientaton, start at the correct orientation for the front face. Now rotate the cube about the X axis so that the top face is now in front.
+4.) To find the bottom face orientation, start at the correct orientation for the front face. Now rotate the cube about the X axis so that the bottom face is now in front.
+
+Actions:
+There are 12 moves and 6 rotations possible on a cube. They are listed below.
+
+moves:
+F: rotate the slice containing the front face clockwise 90 degrees.
+F': rotate the slice containing the front face counter-clockwise 90 degrees.
+B: rotate the slice containing the back face clockwise 90 degrees.
+B': rotate the slice containing the back face counter-clockwise 90 degrees.
+U: rotate the slice containing the up face clockwise 90 degrees.
+U': rotate the slice containing the up face counter-clockwise 90 degrees.
+D: rotate the slice containing the down face clockwise 90 degrees.
+D': rotate the slice containing the down face counter-clockwise 90 degrees.
+L: rotate the slice containing the left face clockwise 90 degrees.
+L': rotate the slice containing the left face counter-clockwise 90 degrees.
+R: rotate the slice containing the right face clockwise 90 degrees.
+R': rotate the slice containing the right face counter-clockwise 90 degrees.
+
+rotations:
+x: Rotate the entire cube 90 degrees clockwise when looking at the X axis (right/yellow face).
+x': Rotate the entire cube 90 degrees counter-clockwise when looking at the X axis (right/yellow face).
+y: Rotate the entire cube 90 degrees clockwise when looking at the Y axis (top/white face).
+y': Rotate the entire cube 90 degrees counter-clockwise when looking at the Y axis (top/white face).
+z: Rotate the entire cube 90 degrees clockwise when looking at the Z axis (back/orange face).
+z': Rotate the entire cube 90 degrees counter-clockwise when looking at the Z axis (back/orange face).

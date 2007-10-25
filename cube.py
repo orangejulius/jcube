@@ -161,22 +161,57 @@ class Cube:
 		newcube.up[0].reverse()
 		newcube.left[0][0],newcube.left[1][0],newcube.left[2][0]=slice[1]
 		newcube.down[2]=slice[2]
-		newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]=slice[3]		
+		newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]=slice[3]
 		return newcube
 	
 	#cube rotations
 	def X(self):
-		return self
+		newcube=copy.deepcopy(self)
+		newcube.right=rotateFace(newcube.right)
+		newcube.left=rotateFacePrime(newcube.left)
+		newcube.front,newcube.up,newcube.back,newcube.down=newcube.down,newcube.front,newcube.up,newcube.back
+		newcube.back[0],newcube.back[2]=newcube.back[2],newcube.back[0]
+		newcube.back[0].reverse()
+		newcube.back[1].reverse()
+		newcube.back[2].reverse()
+		
+		newcube.down[0],newcube.down[2]=newcube.down[2],newcube.down[0]
+		newcube.down[0].reverse()
+		newcube.down[1].reverse()
+		newcube.down[2].reverse()
+		return newcube
+	
 	def Xprime(self):
-		return self
+		newcube=copy.deepcopy(self)
+		newcube.right=rotateFacePrime(newcube.right)
+		newcube.left=rotateFace(newcube.left)
+		newcube.front,newcube.up,newcube.back,newcube.down=newcube.up,newcube.back,newcube.down,newcube.front
+		newcube.back[0],newcube.back[2]=newcube.back[2],newcube.back[0]
+		newcube.back[0].reverse()
+		newcube.back[1].reverse()
+		newcube.back[2].reverse()
+		
+		newcube.up[0],newcube.up[2]=newcube.up[2],newcube.up[0]
+		newcube.up[0].reverse()
+		newcube.up[1].reverse()
+		newcube.up[2].reverse()
+		return newcube
+	
 	def Y(self):
-		return self
+		newcube=copy.deepcopy(self)
+		return newcube
+	
 	def Yprime(self):
-		return self
+		newcube=copy.deepcopy(self)
+		return newcube
+	
 	def Z(self):
-		return self
+		newcube=copy.deepcopy(self)
+		return newcube
+	
 	def Zprime(self):
-		return self
+		newcube=copy.deepcopy(self)
+		return newcube
 	
 	#load state from file
 	#one line per row with

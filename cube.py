@@ -170,15 +170,10 @@ class Cube:
 		newcube.right=rotateFace(newcube.right)
 		newcube.left=rotateFacePrime(newcube.left)
 		newcube.front,newcube.up,newcube.back,newcube.down=newcube.down,newcube.front,newcube.up,newcube.back
-		newcube.back[0],newcube.back[2]=newcube.back[2],newcube.back[0]
-		newcube.back[0].reverse()
-		newcube.back[1].reverse()
-		newcube.back[2].reverse()
-		
-		newcube.down[0],newcube.down[2]=newcube.down[2],newcube.down[0]
-		newcube.down[0].reverse()
-		newcube.down[1].reverse()
-		newcube.down[2].reverse()
+		newcube.back=rotateFace(newcube.back)
+		newcube.back=rotateFace(newcube.back)
+		newcube.down=rotateFace(newcube.down)
+		newcube.down=rotateFace(newcube.down)
 		return newcube
 	
 	def Xprime(self):
@@ -186,15 +181,11 @@ class Cube:
 		newcube.right=rotateFacePrime(newcube.right)
 		newcube.left=rotateFace(newcube.left)
 		newcube.front,newcube.up,newcube.back,newcube.down=newcube.up,newcube.back,newcube.down,newcube.front
-		newcube.back[0],newcube.back[2]=newcube.back[2],newcube.back[0]
-		newcube.back[0].reverse()
-		newcube.back[1].reverse()
-		newcube.back[2].reverse()
-		
-		newcube.up[0],newcube.up[2]=newcube.up[2],newcube.up[0]
-		newcube.up[0].reverse()
-		newcube.up[1].reverse()
-		newcube.up[2].reverse()
+		newcube.up=rotateFace(newcube.up)
+		newcube.up=rotateFace(newcube.up)
+		newcube.back=rotateFace(newcube.back)
+		newcube.back=rotateFace(newcube.back)
+
 		return newcube
 	
 	def Y(self):
@@ -219,8 +210,7 @@ class Cube:
 		newcube.up=rotateFacePrime(newcube.up)
 		newcube.right=rotateFacePrime(newcube.right)
 		newcube.down=rotateFacePrime(newcube.down)
-		newcube.left=rotateFacePrime(newcube.left)
-		
+		newcube.left=rotateFacePrime(newcube.left)		
 		return newcube
 	
 	def Zprime(self):

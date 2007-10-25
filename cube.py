@@ -213,10 +213,25 @@ class Cube:
 	
 	def Z(self):
 		newcube=copy.deepcopy(self)
+		newcube.front=rotateFacePrime(newcube.front)
+		newcube.back=rotateFace(newcube.back)
+		newcube.up,newcube.right,newcube.down,newcube.left=newcube.right,newcube.down,newcube.left,newcube.up
+		newcube.up=rotateFacePrime(newcube.up)
+		newcube.right=rotateFacePrime(newcube.right)
+		newcube.down=rotateFacePrime(newcube.down)
+		newcube.left=rotateFacePrime(newcube.left)
+		
 		return newcube
 	
 	def Zprime(self):
 		newcube=copy.deepcopy(self)
+		newcube.front=rotateFace(newcube.front)
+		newcube.back=rotateFacePrime(newcube.back)
+		newcube.up,newcube.right,newcube.down,newcube.left=newcube.left,newcube.up,newcube.right,newcube.down
+		newcube.up=rotateFace(newcube.up)
+		newcube.right=rotateFace(newcube.right)
+		newcube.down=rotateFace(newcube.down)
+		newcube.left=rotateFace(newcube.left)
 		return newcube
 	
 	#load state from file

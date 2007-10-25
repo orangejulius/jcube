@@ -134,12 +134,35 @@ class Cube:
 
 	def B(self):
 		newcube=copy.deepcopy(self)
+		newcube.back=rotateFace(newcube.back)
+		slice=[newcube.up[0]]
+		slice[0].reverse()
+		slice.append([newcube.left[0][0],newcube.left[1][0],newcube.left[2][0]])
+		slice.append(newcube.down[2])
+		slice.append([newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]])
+		slice=rotateSlice(slice)
+		newcube.up[0]=slice[0]
+		newcube.up[0].reverse()
+		newcube.left[0][0],newcube.left[1][0],newcube.left[2][0]=slice[1]
+		newcube.down[2]=slice[2]
+		newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]=slice[3]		
 		return newcube
 
 	def Bprime(self):
 		newcube=copy.deepcopy(self)
+		newcube.back=rotateFacePrime(newcube.back)
+		slice=[newcube.up[0]]
+		slice[0].reverse()
+		slice.append([newcube.left[0][0],newcube.left[1][0],newcube.left[2][0]])
+		slice.append(newcube.down[2])
+		slice.append([newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]])
+		slice=rotateSlicePrime(slice)
+		newcube.up[0]=slice[0]
+		newcube.up[0].reverse()
+		newcube.left[0][0],newcube.left[1][0],newcube.left[2][0]=slice[1]
+		newcube.down[2]=slice[2]
+		newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]=slice[3]		
 		return newcube
-
 	
 	#cube rotations
 	def X(self):

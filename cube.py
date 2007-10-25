@@ -329,17 +329,20 @@ def rotateSlicePrime(slice):
 #print using colors!
 #ok the colors aren't quite right for orange and yellow
 def prettyprint(out):
-	if (out=='W'):
-		print 'W',
-	elif (out=='G'):
-		print '\033[0;32m'+'G'+'\033[0m',
-	elif (out=='B'):
-		print '\033[1;34m'+'B'+'\033[0m',
-	elif (out=='O'):
-		print '\033[1;31m'+'O'+'\033[0m',
-	elif (out=='Y'):
-		print '\033[33m'+'Y'+'\033[0m',
-	elif (out=='R'):
-		print '\033[1;38m'+'R'+'\033[0m',
+	if 1:#change to 0 to disable pretty printing
+		if (out=='W'):
+			print 'W',
+		elif (out=='G'):
+			print '\033[0;32m'+'G'+'\033[0m',
+		elif (out=='B'):
+			print '\033[1;34m'+'B'+'\033[0m',
+		elif (out=='O'):
+			print '\033[1;31m'+'O'+'\033[0m',
+		elif (out=='Y'):
+			print '\033[33m'+'Y'+'\033[0m',
+		elif (out=='R'):
+			print '\033[1;38m'+'R'+'\033[0m',
+		else:
+			print "e",#error
 	else:
-		print "e",#rror
+		print out,

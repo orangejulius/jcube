@@ -46,3 +46,6 @@ y: Rotate the entire cube 90 degrees clockwise when looking at the Y axis (top/w
 y': Rotate the entire cube 90 degrees counter-clockwise when looking at the Y axis (top/white face).
 z: Rotate the entire cube 90 degrees clockwise when looking at the Z axis (back/orange face).
 z': Rotate the entire cube 90 degrees counter-clockwise when looking at the Z axis (back/orange face).
+
+Screen display:
+The cube is displayed on the screen in an unfolded state. The first row shows the top face. The second row shows the left, front, right, and back faces. Finally, the third row shows the bottom face. By default it is output using pretty colors, however chances are in different environments it will not appear correctly. If you wish to disable pretty printing, visit the prettyprint() method at the bottom of cube.py. Further instructions within that function will guide you on how to disable color output. Enter commands to manipulate the cube.

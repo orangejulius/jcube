@@ -10,12 +10,16 @@ while (quit==False):
 		print "Command list: "
 		print "h: display this help"
 		print "q: quit program"
+		print "load: load a cube state from a file"
 		print "reset: reset the cube"
 		print "additionally any move or rotation command may be used (ex: F or F')"
 	elif (command=='q'):
 		quit=True
 	elif (command=='reset'):
 		c=Cube()
+	elif (command=='load'):
+		filename=raw_input("Enter filename: ")
+		c.load(filename)
 	elif (command=='F'):
 		c=c.F()
 		c.display()

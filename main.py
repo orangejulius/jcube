@@ -4,14 +4,14 @@ print "1: default cube"
 c.display()
 
 print "2: loaded corners.cube file"
-c.load("corners.cube");
+c.load("scrambled.cube");
 c.display()
 
-print "3: L rotation"
-c.L().display()
+print "3: F rotation"
+c.F().display()
 
-print "4: L' rotation"
-c.Lprime().display()
+print "4: F' rotation"
+c.Fprime().display()
 
 print "5: should be the same as 2"
 c.display()

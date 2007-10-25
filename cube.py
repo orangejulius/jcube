@@ -74,10 +74,34 @@ class Cube:
 
 	def F(self):
 		newcube=copy.deepcopy(self)
+		newcube.front=rotateFace(newcube.front)
+		slice=[newcube.up[2]]
+		slice.append([newcube.right[0][0],newcube.right[1][0],newcube.right[2][0]])
+		slice.append(newcube.down[0])
+		slice[2].reverse()
+		slice.append([newcube.left[2][2],newcube.left[1][2],newcube.left[0][2]])
+		slice=rotateSlice(slice)
+		newcube.up[2]=slice[0]
+		newcube.right[0][0],newcube.right[1][0],newcube.right[2][0]=slice[1]
+		newcube.down[0]=slice[2]
+		newcube.down[0].reverse()
+		newcube.left[2][2],newcube.left[1][2],newcube.left[0][2]=slice[3]		
 		return newcube
 
 	def Fprime(self):
 		newcube=copy.deepcopy(self)
+		newcube.front=rotateFacePrime(newcube.front)
+		slice=[newcube.up[2]]
+		slice.append([newcube.right[0][0],newcube.right[1][0],newcube.right[2][0]])
+		slice.append(newcube.down[0])
+		slice[2].reverse()
+		slice.append([newcube.left[2][2],newcube.left[1][2],newcube.left[0][2]])
+		slice=rotateSlicePrime(slice)
+		newcube.up[2]=slice[0]
+		newcube.right[0][0],newcube.right[1][0],newcube.right[2][0]=slice[1]
+		newcube.down[0]=slice[2]
+		newcube.down[0].reverse()
+		newcube.left[2][2],newcube.left[1][2],newcube.left[0][2]=slice[3]
 		return newcube
 
 	def R(self):
@@ -98,11 +122,17 @@ class Cube:
 
 	
 	#cube rotations
-	def x(self):
+	def X(self):
 		return self
-	def y(self):
+	def Xprime(self):
 		return self
-	def z(self):
+	def Y(self):
+		return self
+	def Yprime(self):
+		return self
+	def Z(self):
+		return self
+	def Zprime(self):
 		return self
 	
 	#load state from file
@@ -205,6 +235,7 @@ def rotateSlicePrime(slice):
 	return [slice[1],slice[2],slice[3],slice[0]]
 
 #print using colors!
+#ok the colors aren't quite right for orange and yellow
 def prettyprint(out):
 	if (out=='W'):
 		print 'W',

@@ -1,0 +1,26 @@
+#a cube that is pretty darn near randomly scrambled
+#order: up, down, left, front, right, back
+#up
+R G R
+W W R
+B R B
+#down
+O Y O
+G B G
+Y G Y
+#left
+B O Y
+R G B
+O B G
+#front
+R Y O
+Y R Y
+B O W
+#right
+Y W W
+W Y O
+G O R
+#back
+G W G
+B O B
+W R W

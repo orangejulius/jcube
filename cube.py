@@ -194,26 +194,29 @@ class Cube:
 	#down face is on the bottom
 	def display(self):
 		for i in range(self.size):
-			print "     ",
+			print "      ",
 			for j in range(self.size):
 				prettyprint(self.up[i][j])
 			print
 		for i in range(self.size):
 			for j in range(self.size):
 				prettyprint(self.left[i][j])
+			print "",
 
 			for j in range(self.size):
 				prettyprint(self.front[i][j])
+			print "",
 
 			for j in range(self.size):
 				prettyprint(self.right[i][j])
+			print "",
 
 			for j in range(self.size):
 				prettyprint(self.back[i][j])
 			print
 
 		for i in range(self.size):
-			print "     ",
+			print "      ",
 			for j in range(self.size):
 				prettyprint (self.down[i][j])
 			print

@@ -50,5 +50,8 @@ z': Rotate the entire cube 90 degrees counter-clockwise when looking at the Z ax
 Screen display:
 The cube is displayed on the screen in an unfolded state. The first row shows the top face. The second row shows the left, front, right, and back faces. Finally, the third row shows the bottom face. By default it is output using pretty colors, however chances are in different environments it will not appear correctly. If you wish to disable pretty printing, visit the prettyprint() method at the bottom of cube.py. Further instructions within that function will guide you on how to disable color output. Enter commands to manipulate the cube.
 
+Program execution:
+use 'python main.py' to execute this program.
+
 Loading files:
 It is possible to load a cube state from a file. The load commmand will ask for a filename that contains a cube state. Currently only minimal error checking is performed. Several .cube files containing valid and interesting states are provided for your entertainment.

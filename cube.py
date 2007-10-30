@@ -289,6 +289,95 @@ class Cube:
 			for j in range(self.size):
 				prettyprint (self.down[i][j])
 			print
+	
+	#converts a text command to the appropriate function call
+	def text2Move(self, command):#
+		if (command=='F'):
+			return self.F()
+		elif (command=='F\''):
+			return self.Fprime()
+		elif (command=='B'):
+			return self.B()
+		elif (command=='B\''):
+			return self.Bprime()
+		elif (command=='U'):
+			return self.U()
+		elif (command=='U\''):
+			return self.Uprime()
+		elif (command=='D'):
+			return self.D()
+		elif (command=='D\''):
+			return self.Dprime()
+		elif (command=='L'):
+			return self.L()
+		elif (command=='L\''):
+			return self.Lprime()
+		elif (command=='R'):
+			return self.R()
+		elif (command=='R\''):
+			return self.Rprime()
+		elif (command=='X'):
+			return self.X()
+		elif (command=='X\''):
+			return self.Xprime()
+		elif (command=='Y'):
+			return self.Y()
+		elif (command=='Y\''):
+			return self.Yprime()
+		elif (command=='Z'):
+			return self.Z()
+		elif (command=='Z\''):
+			return self.Zprime()
+		else:
+			print "command "+command+" unknown!"
+
+	#determine if this state is equivalent to the goal state
+	#most of the work is orienting the cube correctly
+	def isGoal(self):
+		#first move red face to front
+		test=copy.deepcopy(self)#make a copy so we don't alter the cube
+		if (test.up[1][1]=='R'):
+			test=test.Xprime()
+		elif (test.down[1][1]=='R'):
+			test=test.X()
+		elif (test.left[1][1]=='R'):
+			test=test.Yprime()
+		elif (test.right[1][1]=='R'):
+			test=test.Y()
+		elif (test.back[1][1]=='R'):
+			test=test.Y().Y()
+		elif (test.front[1][1]!='R'):
+			print "couldn't find red face! this is bad!"
+			return False
+
+		#now move the white face to the top		
+		if (test.down[1][1]=='W'):
+			test=test.Z().Z()
+		elif (test.left[1][1]=='W'):
+			test=test.Zprime()
+		elif (test.right[1][1]=='W'):
+			test=test.Z()
+		elif (test.up[1][1]!='W'):
+			print "couldn't find white face! this is bad!"
+			return False
+
+		#now do some comparing
+		goal=Cube()#goal state cube
+		for i in range(3):
+			for j in range(3):
+				if goal.up[i][j]!=test.up[i][j]:
+					return False
+				if goal.down[i][j]!=test.down[i][j]:
+					return False
+				if goal.left[i][j]!=test.left[i][j]:
+					return False
+				if goal.right[i][j]!=test.right[i][j]:
+					return False
+				if goal.front[i][j]!=test.front[i][j]:
+					return False
+				if goal.back[i][j]!=test.back[i][j]:
+					return False
+		return True
 
 #convenience methods that take a 3x3 matrix and rotate it
 
@@ -303,7 +392,6 @@ def rotateFace(face):
 	
 	return newface
 
-	
 #counterclockwise
 def rotateFacePrime(face):
 	newface=face

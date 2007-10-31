@@ -14,11 +14,21 @@ class CubeProblem (Problem):
 		self.initial = initial; self.goal = Cube()
 	
 	def successor(self, state):
-		"""Given a state, return a sequence of (action, state) pairs reachable
-		from this state. If there are many successors, consider an iterator
-		that yields the successors one at a time, rather than building them
-		all at once. Iterators will work fine within the framework."""
-		abstract
+		nodes=[('U',state.U())]
+		nodes.append(('D',state.D()))
+		nodes.append(('L',state.L()))
+		nodes.append(('R',state.R()))
+		nodes.append(('U',state.U()))
+		nodes.append(('B',state.B()))
+		
+		nodes.append(('U\'',state.Uprime()))
+		nodes.append(('D\'',state.Dprime()))
+		nodes.append(('L\'',state.Lprime()))
+		nodes.append(('R\'',state.Rprime()))
+		nodes.append(('F\'',state.Fprime()))
+		nodes.append(('B\'',state.Bprime()))
+
+		return nodes
 	
 	def goal_test(self, state):
 		"""Return True if the state is a goal. The default method compares the
@@ -40,4 +50,4 @@ class CubeProblem (Problem):
 		abstract
 	
 	def h(self,n):
-		return 1
+		return n.state.heuristic()

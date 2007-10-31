@@ -1,13 +1,14 @@
 from cube import *
 from CubeProblem import *
 from search import *
-#import random
+
 c=Cube()
 
 quit=False
 print "welcome!"
 while (quit==False):
 	c.display()
+	print c.heuristic()
 	text=raw_input("Enter command (h for help): ")
 	command=text.split()
 	if (len(command)>0):
@@ -31,7 +32,13 @@ while (quit==False):
 			print c.isGoal()
 		elif (command[0]=='solve'):
 			p=CubeProblem(c)
-			astar_search(p)
+			something=astar_search(p)
+			print "Cube solved in "+repr(len(something.path())-1)+" moves!"
+			print "Actions: ",
+			for i in something.path():
+				if (i.action!=None):
+					print i.action,
+			print
 		elif (command[0]=='scramble'):
 			if (len(command)>1):
 				if(command[1].isdigit()):

@@ -1,5 +1,7 @@
 from cube import *
-import random
+from CubeProblem import *
+from search import *
+#import random
 c=Cube()
 
 quit=False
@@ -25,8 +27,11 @@ while (quit==False):
 		elif (command[0]=='load'):
 			filename=raw_input("Enter filename: ")
 			c.load(filename)
-		elif (command[0]=='solve'):
+		elif (command[0]=='goal'):
 			print c.isGoal()
+		elif (command[0]=='solve'):
+			p=CubeProblem(c)
+			astar_search(p)
 		elif (command[0]=='scramble'):
 			if (len(command)>1):
 				if(command[1].isdigit()):

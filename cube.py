@@ -330,6 +330,7 @@ class Cube:
 			return self.Zprime()
 		else:
 			print "command "+command+" unknown!"
+			return self
 
 	#determine if this state is equivalent to the goal state
 	#most of the work is orienting the cube correctly

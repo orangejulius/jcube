@@ -8,7 +8,6 @@ functions."""
 # from __future__ import generators
 
 from utils import *
-import agents
 import math, random, sys, time, bisect, string
 
 #______________________________________________________________________________
@@ -86,27 +85,6 @@ class Node:
         return [Node(next, self, act,
                      problem.path_cost(self.path_cost, self.state, act, next))
                 for (act, next) in problem.successor(self.state)]
-
-#______________________________________________________________________________
-
-class SimpleProblemSolvingAgent(agents.Agent):
-    """Abstract framework for problem-solving agent. [Fig. 3.1]"""
-    def __init__(self):
-        Agent.__init__(self)
-        state = []
-        seq = []
-
-        def program(percept):
-            state = self.update_state(state, percept)
-            if not seq:
-                goal = self.formulate_goal(state)
-                problem = self.formulate_problem(state, goal)
-                seq = self.search(problem)
-            action = seq[0]
-            seq[0:1] = []
-            return action
-
-        self.program = program
 
 #______________________________________________________________________________
 ## Uninformed Search algorithms

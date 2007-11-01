@@ -164,6 +164,20 @@ class Cube:
 		newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]=slice[3]
 		return newcube
 	
+	#double moves
+	def F2():
+		return self.F().F()
+	def B2():
+		return self.B().B()
+	def L2():
+		return self.L().L()
+	def R2():
+		return self.R().R()
+	def U2():
+		return self.U().U()
+	def D2():
+		return self.D().D()
+	
 	#cube rotations
 	def X(self):
 		newcube=copy.deepcopy(self)
@@ -400,111 +414,113 @@ class Cube:
 		return count/5
 	
 	def cornersInPlace(self):
-		count=0
+		count=8
 		#front left up
 		if (self.front[0][0]==self.front[1][1]) & (self.left[0][2]==self.left[1][1]) & (self.up[2][0]==self.up[1][1]):
-			count=count+1
+			count=count-1
 			
 		#front right up
 		if (self.front[0][2]==self.front[1][1]) & (self.right[0][0]==self.right[1][1]) & (self.up[2][2]==self.up[1][1]):
-			count=count+1
+			count=count-1
 			
 		#front left down
 		if (self.front[2][0]==self.front[1][1]) & (self.left[2][2]==self.left[1][1]) & (self.down[0][0]==self.down[1][1]):
-			count=count+1
+			count=count-1
 			
 		#front right down
 		if (self.front[2][2]==self.front[1][1]) & (self.right[2][0]==self.right[1][1]) & (self.down[0][2]==self.down[1][1]):
-			count=count+1
+			count=count-1
 			
 		#back left up
 		if (self.back[0][2]==self.back[1][1]) & (self.left[0][0]==self.left[1][1]) & (self.up[0][0]==self.up[1][1]):
-			count=count+1
+			count=count-1
 			
 		#back right up
 		if (self.back[0][0]==self.back[1][1]) & (self.right[0][2]==self.right[1][1]) & (self.up[0][2]==self.up[1][1]):
-			count=count+1
+			count=count-1
 			
 		#back left down
 		if (self.back[2][2]==self.back[1][1]) & (self.left[2][0]==self.left[1][1]) & (self.down[2][0]==self.down[1][1]):
-			count=count+1
+			count=count-1
 		#back right down
 		if (self.back[2][0]==self.back[1][1]) & (self.right[2][2]==self.right[1][1]) & (self.down[2][2]==self.down[1][1]):
-			count=count+1
-		return 8-count
+			count=count-1
+		return count
 		
 	def edgesInPlace1(self):
-		count=0
+		count=6
 		#front up
 		if (self.front[0][1]==self.front[1][1]) & (self.up[2][1]==self.up[1][1]):
 			#print "FU"
-			count=count+1
+			count=count-1
 			
 		#left up
 		if (self.left[0][1]==self.left[1][1]) & (self.up[1][0]==self.up[1][1]):
 			#print "LU"
-			count=count+1
+			count=count-1
 		#right up
 		if (self.right[0][1]==self.right[1][1]) & (self.up[1][2]==self.up[1][1]):
 			#print "RU"
-			count=count+1
+			count=count-1
 		#back up
 		if (self.back[0][1]==self.back[1][1]) & (self.up[0][1]==self.up[1][1]):
 			#print "BU"
-			count=count+1
+			count=count-1
 		
 		#front left
 		if (self.front[1][0]==self.front[1][1]) & (self.left[1][2]==self.left[1][1]):
 			#print "FL"
-			count=count+1
+			count=count-1
 		#front right
 		if (self.front[1][2]==self.front[1][1]) & (self.right[1][0]==self.right[1][1]):
 			#print "FR"
-			count=count+1
-		return 6-count
+			count=count-1
+		return count
 
 	def edgesInPlace2(self):
-		count=0
+		count=6
 		#front down
 		if (self.front[2][1]==self.front[1][1]) & (self.down[0][1]==self.down[1][1]):
 			#print "FD"
-			count=count+1
+			count=count-1
 		
 		#left down
 		if (self.left[2][1]==self.left[1][1]) & (self.down[1][0]==self.down[1][1]):
 			#print "LD"
-			count=count+1
+			count=count-1
 			
 		#right down
 		if (self.right[2][1]==self.right[1][1]) & (self.down[1][2]==self.down[1][1]):
 			#print "RD"
-			count=count+1
+			count=count-1
 			
 		#back down
 		if (self.back[2][1]==self.back[1][1]) & (self.down[2][1]==self.down[1][1]):
 			#print "BD"
-			count=count+1
+			count=count-1
 			
 		#back left
 		if (self.back[1][2]==self.back[1][1]) & (self.left[1][0]==self.left[1][1]):
 			#print "BL"
-			count=count+1
+			count=count-1
 			
 		#back right
 		if (self.back[1][0]==self.back[1][1]) & (self.right[1][2]==self.right[1][1]):
 			#print "BR"
-			count=count+1
+			count=count-1
 			
-		return 6-count
+		return count
 		
 	def heuristic2(self):
-		if self.cornersInPlace()==0:
-			if (self.edgesInPlace1()==0):
-				return self.edgesInPlace2()
+		h1=self.cornersInPlace()
+		if h1==0:
+			h2=self.edgesInPlace1()
+			if (h2==0):
+				return h2
 			else:
 				return self.edgesInPlace1()
 		else:
-			return self.cornersInPlace()
+			return h1
 		
 #convenience methods that take a 3x3 matrix and rotate it
 

@@ -31,10 +31,11 @@ while (quit==False):
 			print c.isGoal()
 		elif (command[0]=='solve'):
 			p=CubeProblem(c)
-			something=astar_search(p)
-			print "Cube solved in "+repr(len(something.path())-1)+" moves!"
+			something=astar_search(p).path()
+			something.reverse()
+			print "Cube solved in "+repr(len(something)-1)+" moves!"
 			print "Actions: ",
-			for i in something.path():
+			for i in something:
 				if (i.action!=None):
 					print i.action,
 			print

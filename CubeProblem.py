@@ -27,6 +27,13 @@ class CubeProblem (Problem):
 		nodes.append(('R\'',state.Rprime()))
 		nodes.append(('F\'',state.Fprime()))
 		nodes.append(('B\'',state.Bprime()))
+		
+		nodes.append(('U2',state.U2()))
+		nodes.append(('D2',state.D2()))
+		nodes.append(('L2',state.L2()))
+		nodes.append(('R2',state.R2()))
+		nodes.append(('F2',state.F2()))
+		nodes.append(('B2',state.B2()))
 
 		return nodes
 	

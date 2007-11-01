@@ -165,17 +165,17 @@ class Cube:
 		return newcube
 	
 	#double moves
-	def F2():
+	def F2(self):
 		return self.F().F()
-	def B2():
+	def B2(self):
 		return self.B().B()
-	def L2():
+	def L2(self):
 		return self.L().L()
-	def R2():
+	def R2(self):
 		return self.R().R()
-	def U2():
+	def U2(self):
 		return self.U().U()
-	def D2():
+	def D2(self):
 		return self.D().D()
 	
 	#cube rotations
@@ -342,6 +342,18 @@ class Cube:
 			return self.Z()
 		elif (command=='Z\''):
 			return self.Zprime()
+		elif (command=='F2'):
+			return self.F2()
+		elif (command=='B2'):
+			return self.B2()
+		elif (command=='L2'):
+			return self.L2()
+		elif (command=='R2'):
+			return self.R2()
+		elif (command=='U2'):
+			return self.U2()
+		elif (command=='D2'):
+			return self.D2()
 		else:
 			print "command "+command+" unknown!"
 			return self

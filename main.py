@@ -1,6 +1,7 @@
 from cube import *
 from CubeProblem import *
 from search import *
+import time
 
 c=Cube()
 
@@ -30,11 +31,17 @@ while (quit==False):
 		elif (command[0]=='goal'):
 			print c.isGoal()
 		elif (command[0]=='solve'):
+			t=time.clock()
 			p=CubeProblem(c)
 			something=astar_search(p).path()
 			something.reverse()
+			t=time.clock()-t
+			
 			print "Cube solved in "+repr(len(something)-1)+" moves!"
-			print "Actions: ",
+			print "solution took "+repr(t)
+			print repr(p.appended)+ " nodes searched"
+			print repr(p.appended/t)+" nodes per second"
+			print "Solution: ",
 			for i in something:
 				if (i.action!=None):
 					print i.action,

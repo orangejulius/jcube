@@ -12,6 +12,7 @@ class CubeProblem (Problem):
 		state, if there is a unique goal.  Your subclass's constructor can add
 		other arguments."""
 		self.initial = initial; self.goal = Cube()
+		self.appended=0
 	
 	def successor(self, state):
 		nodes=[('U',state.U())]
@@ -34,6 +35,9 @@ class CubeProblem (Problem):
 		nodes.append(('R2',state.R2()))
 		nodes.append(('F2',state.F2()))
 		nodes.append(('B2',state.B2()))
+		self.appended=self.appended+18
+		#if (self.appended%180==0):
+		#	print self.appended
 
 		return nodes
 	

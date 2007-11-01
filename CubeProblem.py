@@ -50,4 +50,6 @@ class CubeProblem (Problem):
 		abstract
 	
 	def h(self,n):
-		return n.state.heuristic()
+		heur=n.state.heuristic2()
+		#print repr(n.path_cost)+" "+repr(heur)
+		return heur

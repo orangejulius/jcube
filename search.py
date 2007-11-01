@@ -123,6 +123,21 @@ def graph_search(problem, fringe):
             closed[node.state] = True
             fringe.extend(node.expand(problem))    
     return None
+		  
+#def depth_limited_graph_search(problem, fringe,depth):
+    #"""Search through the successors of a problem to find a goal.
+    #The argument fringe should be an empty queue.
+    #If two paths reach a state, only use the best one. [Fig. 3.18]"""
+    #closed = {}
+    #fringe.append(Node(problem.initial))
+    #while fringe && :
+        #node = fringe.pop()
+        #if problem.goal_test(node.state): 
+            #return node
+        #if node.state not in closed:
+            #closed[node.state] = True
+            #fringe.extend(node.expand(problem))    
+    #return None
 
 def breadth_first_graph_search(problem):
     "Search the shallowest nodes in the search tree first. [p 74]"

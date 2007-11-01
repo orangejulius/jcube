@@ -8,7 +8,6 @@ quit=False
 print "welcome!"
 while (quit==False):
 	c.display()
-	print c.heuristic()
 	text=raw_input("Enter command (h for help): ")
 	command=text.split()
 	if (len(command)>0):
@@ -49,7 +48,7 @@ while (quit==False):
 				num=30
 			print "applied:",
 			for i in range(num):
-				move=random.choice(['U','D','L','R','F','B','X','Y','Z','U\'','D\'','L\'','R\'','F\'','B\'','X\'','Y\'','Z\''])
+				move=random.choice(['U','D','L','R','F','B','U\'','D\'','L\'','R\'','F\'','B\''])#,'X','Y','Z','X\'','Y\'','Z\''])
 				print move,
 				c=c.text2Move(move)
 			print

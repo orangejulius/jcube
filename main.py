@@ -16,7 +16,7 @@ while (quit==False):
 			print "Command list: "
 			print "h: display this help"
 			print "q: quit program"
-			print "load: load a cube state from a file"
+			print "load [filename]: load a cube state from the given file"
 			print "reset: reset the cube"
 			print "scramble [num]: apply [num] random moves to make things more interesting :)"
 			print "solve: solve the cube"
@@ -26,10 +26,10 @@ while (quit==False):
 		elif (command[0]=='reset'):
 			c=Cube()
 		elif (command[0]=='load'):
-			filename=raw_input("Enter filename: ")
-			c.load(filename)
-		elif (command[0]=='goal'):
-			print c.isGoal()
+			if (len(command)>1):
+				c.load(command[1])
+			else:
+				print "error: no filename specified!"
 		elif (command[0]=='solve'):
 			t=time.clock()
 			p=CubeProblem(c)
@@ -40,7 +40,8 @@ while (quit==False):
 			print "Cube solved in "+repr(len(something)-1)+" moves!"
 			print "solution took "+repr(t)
 			print repr(p.appended)+ " nodes searched"
-			print repr(p.appended/t)+" nodes per second"
+			if (t>0):
+				print repr(p.appended/t)+" nodes per second"
 			print "Solution: ",
 			for i in something:
 				if (i.action!=None):

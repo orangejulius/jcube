@@ -392,38 +392,39 @@ class Cube:
 		goal=Cube()#goal state cube
 		for i in range(3):
 			for j in range(3):
-				if goal.up[i][j]!=test.up[i][j]:
-					return False
-				if goal.down[i][j]!=test.down[i][j]:
-					return False
-				if goal.left[i][j]!=test.left[i][j]:
-					return False
-				if goal.right[i][j]!=test.right[i][j]:
-					return False
-				if goal.front[i][j]!=test.front[i][j]:
-					return False
-				if goal.back[i][j]!=test.back[i][j]:
-					return False
+				if  (i!=1) | (j!=1):
+					if goal.up[i][j]!=test.up[i][j]:
+						return False
+					if goal.down[i][j]!=test.down[i][j]:
+						return False
+					if goal.left[i][j]!=test.left[i][j]:
+						return False
+					if goal.right[i][j]!=test.right[i][j]:
+						return False
+					if goal.front[i][j]!=test.front[i][j]:
+						return False
+					if goal.back[i][j]!=test.back[i][j]:
+						return False
 		return True
 			
 	def heuristic(self):
 		count=0
 		for i in range(3):
 			for j in range(3):
-				if self.up[i][j]!=self.up[1][1]:
-					count=count+1
-				if self.down[i][j]!=self.down[1][1]:
-					count=count+1
-				if self.left[i][j]!=self.left[1][1]:
-					count=count+1
-				if self.right[i][j]!=self.right[1][1]:
-					count=count+1
-				if self.front[i][j]!=self.front[1][1]:
-					count=count+1
-				if self.back[i][j]!=self.back[1][1]:
-					count=count+1
-		#return float(count)/5.
-		return count/5
+				if  (i!=1) | (j!=1):
+					if self.up[i][j]!=self.up[1][1]:
+						count=count+1
+					if self.down[i][j]!=self.down[1][1]:
+						count=count+1
+					if self.left[i][j]!=self.left[1][1]:
+						count=count+1
+					if self.right[i][j]!=self.right[1][1]:
+						count=count+1
+					if self.front[i][j]!=self.front[1][1]:
+						count=count+1
+					if self.back[i][j]!=self.back[1][1]:
+						count=count+1
+		return count/12
 	
 	def cornersInPlace(self):
 		count=8

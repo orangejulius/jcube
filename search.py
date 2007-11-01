@@ -63,7 +63,7 @@ class Node:
 
     def __init__(self, state, parent=None, action=None, path_cost=0):
         "Create a search tree Node, derived from a parent by an action."
-        update(self, state=state, parent=parent, action=action, 
+        update(self, state=state, parent=parent, action=action,
                path_cost=path_cost, depth=0)
         if parent:
             self.depth = parent.depth + 1
@@ -117,35 +117,12 @@ def graph_search(problem, fringe):
     fringe.append(Node(problem.initial))
     while fringe:
         node = fringe.pop()
-        if problem.goal_test(node.state): 
+        if problem.goal_test(node.state):
             return node
         if node.state not in closed:
             closed[node.state] = True
-            fringe.extend(node.expand(problem))    
+            fringe.extend(node.expand(problem))
     return None
-		  
-#def depth_limited_graph_search(problem, fringe,depth):
-    #"""Search through the successors of a problem to find a goal.
-    #The argument fringe should be an empty queue.
-    #If two paths reach a state, only use the best one. [Fig. 3.18]"""
-    #closed = {}
-    #fringe.append(Node(problem.initial))
-    #while fringe && :
-        #node = fringe.pop()
-        #if problem.goal_test(node.state): 
-            #return node
-        #if node.state not in closed:
-            #closed[node.state] = True
-            #fringe.extend(node.expand(problem))    
-    #return None
-
-def breadth_first_graph_search(problem):
-    "Search the shallowest nodes in the search tree first. [p 74]"
-    return graph_search(problem, FIFOQueue())
-    
-def depth_first_graph_search(problem):
-    "Search the deepest nodes in the search tree first. [p 74]"
-    return graph_search(problem, Stack())
 
 def depth_limited_search(problem, limit=50):
     "[Fig. 3.12]"
@@ -192,10 +169,7 @@ def best_first_graph_search(problem, f):
     f = memoize(f, 'f')
     return graph_search(problem, PriorityQueue(min, f))
 
-greedy_best_first_graph_search = best_first_graph_search
-    # Greedy best-first search is accomplished by specifying f(n) = h(n).
-
-def astar_search(problem, h=None):
+def astar_search(problem):
     """A* search is best-first graph search with f(n) = g(n)+h(n).
     You need to specify the h function when you call astar_search.
     Uses the pathmax trick: f(n) = max(f(n), g(n)+h(n))."""
@@ -203,62 +177,3 @@ def astar_search(problem, h=None):
     def f(n):
         return max(getattr(n, 'f', -infinity), n.path_cost + h(n))
     return best_first_graph_search(problem, f)
-
-#______________________________________________________________________________
-## Other search algorithms
-
-def recursive_best_first_search(problem):
-    "[Fig. 4.5]"
-    def RBFS(problem, node, flimit):
-        if problem.goal_test(node.state): 
-            return node
-        successors = expand(node, problem)
-        if len(successors) == 0:
-            return None, infinity
-        for s in successors:
-            s.f = max(s.path_cost + s.h, node.f)
-        while True:
-            successors.sort(lambda x,y: x.f - y.f) # Order by lowest f value
-            best = successors[0]
-            if best.f > flimit:
-                return None, best.f
-            alternative = successors[1]
-            result, best.f = RBFS(problem, best, min(flimit, alternative))
-            if result is not None:
-                return result
-    return RBFS(Node(problem.initial), infinity)
-
-
-def hill_climbing(problem):
-    """From the initial node, keep choosing the neighbor with highest value,
-    stopping when no neighbor is better. [Fig. 4.11]"""
-    current = Node(problem.initial)
-    while True:
-        neighbor = argmax(expand(node, problem), Node.value)
-        if neighbor.value() <= current.value():
-            return current.state
-        current = neighbor
-
-def exp_schedule(k=20, lam=0.005, limit=100):
-    "One possible schedule function for simulated annealing"
-    return lambda t: if_(t < limit, k * math.exp(-lam * t), 0)
-
-def simulated_annealing(problem, schedule=exp_schedule()):
-    "[Fig. 4.5]"
-    current = Node(problem.initial)
-    for t in xrange(sys.maxint):
-        T = schedule(t)
-        if T == 0:
-            return current
-        next = random.choice(expand(node. problem))
-        delta_e = next.path_cost - current.path_cost
-        if delta_e > 0 or probability(math.exp(delta_e/T)):
-            current = next
-
-def online_dfs_agent(a):
-    "[Fig. 4.12]"
-    pass #### more
-
-def lrta_star_agent(a):
-    "[Fig. 4.12]"
-    pass #### more

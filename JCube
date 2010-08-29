@@ -37,7 +37,7 @@ while (quit==False):
 			something=astar_search(p).path()
 			something.reverse()
 			t=time.clock()-t
-			
+
 			print "Cube solved in "+repr(len(something)-1)+" moves!"
 			print "solution took "+repr(t)
 			print repr(p.appended)+ " nodes searched"

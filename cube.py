@@ -5,7 +5,7 @@ import copy
 class Cube:
 	def __init__(self):
 		self.size=3
-		
+
 		#initialize matricies
 		self.up=[["W" for col in range(self.size)] for row in range(self.size)]
 		self.down=[['B' for col in range(self.size)] for row in range(self.size)]
@@ -22,7 +22,7 @@ class Cube:
 		newslice=rotateSlice([newcube.front[0],newcube.left[0],newcube.back[0],newcube.right[0]])
 		newcube.front[0],newcube.left[0],newcube.back[0],newcube.right[0]=newslice[0],newslice[1],newslice[2],newslice[3]
 		return newcube
-	
+
 	def Uprime(self):
 		newcube=copy.deepcopy(self)
 		newcube.up=rotateFacePrime(newcube.up)
@@ -85,7 +85,7 @@ class Cube:
 		newcube.right[0][0],newcube.right[1][0],newcube.right[2][0]=slice[1]
 		newcube.down[0]=slice[2]
 		newcube.down[0].reverse()
-		newcube.left[2][2],newcube.left[1][2],newcube.left[0][2]=slice[3]		
+		newcube.left[2][2],newcube.left[1][2],newcube.left[0][2]=slice[3]
 		return newcube
 
 	def Fprime(self):
@@ -145,7 +145,7 @@ class Cube:
 		newcube.up[0].reverse()
 		newcube.left[0][0],newcube.left[1][0],newcube.left[2][0]=slice[1]
 		newcube.down[2]=slice[2]
-		newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]=slice[3]		
+		newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]=slice[3]
 		return newcube
 
 	def Bprime(self):
@@ -163,7 +163,7 @@ class Cube:
 		newcube.down[2]=slice[2]
 		newcube.right[2][2],newcube.right[1][2],newcube.right[0][2]=slice[3]
 		return newcube
-	
+
 	#double moves
 	def F2(self):
 		return self.F().F()
@@ -177,7 +177,7 @@ class Cube:
 		return self.U().U()
 	def D2(self):
 		return self.D().D()
-	
+
 	#cube rotations
 	def X(self):
 		newcube=copy.deepcopy(self)
@@ -189,7 +189,7 @@ class Cube:
 		newcube.down=rotateFace(newcube.down)
 		newcube.down=rotateFace(newcube.down)
 		return newcube
-	
+
 	def Xprime(self):
 		newcube=copy.deepcopy(self)
 		newcube.right=rotateFacePrime(newcube.right)
@@ -201,21 +201,21 @@ class Cube:
 		newcube.back=rotateFace(newcube.back)
 
 		return newcube
-	
+
 	def Y(self):
 		newcube=copy.deepcopy(self)
 		newcube.up=rotateFace(newcube.up)
 		newcube.down=rotateFacePrime(newcube.down)
 		newcube.front,newcube.right,newcube.back,newcube.left=newcube.right,newcube.back,newcube.left,newcube.front
 		return newcube
-	
+
 	def Yprime(self):
 		newcube=copy.deepcopy(self)
 		newcube.up=rotateFacePrime(newcube.up)
 		newcube.down=rotateFace(newcube.down)
 		newcube.front,newcube.right,newcube.back,newcube.left=newcube.left,newcube.front,newcube.right,newcube.back
 		return newcube
-	
+
 	def Z(self):
 		newcube=copy.deepcopy(self)
 		newcube.front=rotateFacePrime(newcube.front)
@@ -224,9 +224,9 @@ class Cube:
 		newcube.up=rotateFacePrime(newcube.up)
 		newcube.right=rotateFacePrime(newcube.right)
 		newcube.down=rotateFacePrime(newcube.down)
-		newcube.left=rotateFacePrime(newcube.left)		
+		newcube.left=rotateFacePrime(newcube.left)
 		return newcube
-	
+
 	def Zprime(self):
 		newcube=copy.deepcopy(self)
 		newcube.front=rotateFace(newcube.front)
@@ -237,7 +237,7 @@ class Cube:
 		newcube.down=rotateFace(newcube.down)
 		newcube.left=rotateFace(newcube.left)
 		return newcube
-	
+
 	#load state from file
 	#one line per row with
 	#three lines per face
@@ -303,7 +303,7 @@ class Cube:
 			for j in range(self.size):
 				prettyprint (self.down[i][j])
 			print
-	
+
 	#converts a text command to the appropriate function call
 	def text2Move(self, command):#
 		if (command=='F'):
@@ -377,7 +377,7 @@ class Cube:
 			print "couldn't find red face! this is bad!"
 			return False
 
-		#now move the white face to the top		
+		#now move the white face to the top
 		if (test.down[1][1]=='W'):
 			test=test.Z().Z()
 		elif (test.left[1][1]=='W'):
@@ -406,7 +406,7 @@ class Cube:
 					if goal.back[i][j]!=test.back[i][j]:
 						return False
 		return True
-			
+
 	def heuristic(self):
 		count=0
 		for i in range(3):
@@ -425,33 +425,33 @@ class Cube:
 					if self.back[i][j]!=self.back[1][1]:
 						count=count+1
 		return count/12
-	
+
 	def cornersInPlace(self):
 		count=8
 		#front left up
 		if (self.front[0][0]==self.front[1][1]) & (self.left[0][2]==self.left[1][1]) & (self.up[2][0]==self.up[1][1]):
 			count=count-1
-			
+
 		#front right up
 		if (self.front[0][2]==self.front[1][1]) & (self.right[0][0]==self.right[1][1]) & (self.up[2][2]==self.up[1][1]):
 			count=count-1
-			
+
 		#front left down
 		if (self.front[2][0]==self.front[1][1]) & (self.left[2][2]==self.left[1][1]) & (self.down[0][0]==self.down[1][1]):
 			count=count-1
-			
+
 		#front right down
 		if (self.front[2][2]==self.front[1][1]) & (self.right[2][0]==self.right[1][1]) & (self.down[0][2]==self.down[1][1]):
 			count=count-1
-			
+
 		#back left up
 		if (self.back[0][2]==self.back[1][1]) & (self.left[0][0]==self.left[1][1]) & (self.up[0][0]==self.up[1][1]):
 			count=count-1
-			
+
 		#back right up
 		if (self.back[0][0]==self.back[1][1]) & (self.right[0][2]==self.right[1][1]) & (self.up[0][2]==self.up[1][1]):
 			count=count-1
-			
+
 		#back left down
 		if (self.back[2][2]==self.back[1][1]) & (self.left[2][0]==self.left[1][1]) & (self.down[2][0]==self.down[1][1]):
 			count=count-1
@@ -459,14 +459,14 @@ class Cube:
 		if (self.back[2][0]==self.back[1][1]) & (self.right[2][2]==self.right[1][1]) & (self.down[2][2]==self.down[1][1]):
 			count=count-1
 		return count
-		
+
 	def edgesInPlace1(self):
 		count=6
 		#front up
 		if (self.front[0][1]==self.front[1][1]) & (self.up[2][1]==self.up[1][1]):
 			#print "FU"
 			count=count-1
-			
+
 		#left up
 		if (self.left[0][1]==self.left[1][1]) & (self.up[1][0]==self.up[1][1]):
 			#print "LU"
@@ -479,7 +479,7 @@ class Cube:
 		if (self.back[0][1]==self.back[1][1]) & (self.up[0][1]==self.up[1][1]):
 			#print "BU"
 			count=count-1
-		
+
 		#front left
 		if (self.front[1][0]==self.front[1][1]) & (self.left[1][2]==self.left[1][1]):
 			#print "FL"
@@ -496,34 +496,34 @@ class Cube:
 		if (self.front[2][1]==self.front[1][1]) & (self.down[0][1]==self.down[1][1]):
 			#print "FD"
 			count=count-1
-		
+
 		#left down
 		if (self.left[2][1]==self.left[1][1]) & (self.down[1][0]==self.down[1][1]):
 			#print "LD"
 			count=count-1
-			
+
 		#right down
 		if (self.right[2][1]==self.right[1][1]) & (self.down[1][2]==self.down[1][1]):
 			#print "RD"
 			count=count-1
-			
+
 		#back down
 		if (self.back[2][1]==self.back[1][1]) & (self.down[2][1]==self.down[1][1]):
 			#print "BD"
 			count=count-1
-			
+
 		#back left
 		if (self.back[1][2]==self.back[1][1]) & (self.left[1][0]==self.left[1][1]):
 			#print "BL"
 			count=count-1
-			
+
 		#back right
 		if (self.back[1][0]==self.back[1][1]) & (self.right[1][2]==self.right[1][1]):
 			#print "BR"
 			count=count-1
-			
+
 		return count
-		
+
 	def heuristic2(self):
 		h1=self.cornersInPlace()
 		if h1==0:
@@ -534,7 +534,7 @@ class Cube:
 				return self.edgesInPlace1()
 		else:
 			return h1
-		
+
 #convenience methods that take a 3x3 matrix and rotate it
 
 #clockwise
@@ -542,10 +542,9 @@ def rotateFace(face):
 	newface=face
 	#corners
 	newface[0][0],newface[0][2],newface[2][0],newface[2][2]=face[2][0],face[0][0],face[2][2],face[0][2]
-	
+
 	#middle edges
 	newface[0][1],newface[1][2],newface[2][1],newface[1][0]=face[1][0],face[0][1],face[1][2],face[2][1]
-	
 	return newface
 
 #counterclockwise
@@ -553,10 +552,10 @@ def rotateFacePrime(face):
 	newface=face
 	#corners
 	face[0][0],face[0][2],face[2][0], face[2][2]=face[0][2],face[2][2],face[0][0],face[2][0]
-	
+
 	#middle edges
 	newface[0][1],newface[1][2],newface[2][1],newface[1][0]=face[1][2],face[2][1],face[1][0],face[0][1]
-	
+
 	return newface
 
 #convenience methods that take a list of 4 sides of a slice and rotate them

@@ -23,20 +23,20 @@ class Problem (object):
         state, if there is a unique goal.  Your subclass's constructor can add
         other arguments."""
         self.initial = initial; self.goal = goal
-        
+
     def successor(self, state):
         """Given a state, return a sequence of (action, state) pairs reachable
         from this state. If there are many successors, consider an iterator
         that yields the successors one at a time, rather than building them
         all at once. Iterators will work fine within the framework."""
         abstract
-    
+
     def goal_test(self, state):
         """Return True if the state is a goal. The default method compares the
         state to self.goal, as specified in the constructor. Implement this
         method if checking against a single self.goal is not enough."""
         return state == self.goal
-    
+
     def path_cost(self, c, state1, action, state2):
         """Return the cost of a solution path that arrives at state2 from
         state1 via action, assuming cost c to get up to state1. If the problem
@@ -50,7 +50,7 @@ class Problem (object):
         and related algorithms try to maximize this value."""
         abstract
 #______________________________________________________________________________
-    
+
 class Node:
     """A node in a search tree. Contains a pointer to the parent (the node
     that this is a successor of) and to the actual state for this node. Note
@@ -67,10 +67,10 @@ class Node:
                path_cost=path_cost, depth=0)
         if parent:
             self.depth = parent.depth + 1
-            
+
     def __repr__(self):
         return "<Node %s>" % (self.state,)
-    
+
     def path(self):
         """Create a list of nodes from the root to this node."""
         # Isn't this backwards???
@@ -104,7 +104,7 @@ def tree_search(problem, fringe):
 def breadth_first_tree_search(problem):
     "Search the shallowest nodes in the search tree first. [p 74]"
     return tree_search(problem, FIFOQueue())
-    
+
 def depth_first_tree_search(problem):
     "Search the deepest nodes in the search tree first. [p 74]"
     return tree_search(problem, Stack())

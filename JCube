@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from cube import *
 from CubeProblem import *
 from search import *

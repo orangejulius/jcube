@@ -3,16 +3,14 @@
 import copy
 
 class Cube:
+	FACES = ['up', 'down', 'left', 'front', 'right', 'back']
+	COLORS = ['W', 'B', 'G', 'R', 'Y', 'O']
 	def __init__(self):
 		self.size=3
 
 		#initialize matricies
-		self.up=[["W" for col in range(self.size)] for row in range(self.size)]
-		self.down=[['B' for col in range(self.size)] for row in range(self.size)]
-		self.left=[['G' for col in range(self.size)] for row in range(self.size)]
-		self.front=[['R' for col in range(self.size)] for row in range(self.size)]
-		self.right=[['Y' for col in range(self.size)] for row in range(self.size)]
-		self.back=[['O' for col in range(self.size)] for row in range(self.size)]
+		for face, color in zip(self.FACES, self.COLORS):
+			setattr(self, face, [[color for col in range(self.size)] for row in range(self.size)])
 
 	#moves
 	#these all return a new cube object with the requested move executed
